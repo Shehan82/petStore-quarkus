@@ -11,6 +11,8 @@ public interface PetRepo extends JpaRepository<Pet, Integer> {
 
     public List<Pet> findPetsByPetName(String petName);
     public void deletePetsByPetType(String petType);
+    public List<Pet> findPetsByPetType(String petType);
+
 
 
 

@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -16,6 +13,7 @@ import javax.ws.rs.core.Response.Status;
 import com.example.petstore.repo.PetRepo;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 
@@ -103,6 +101,24 @@ public class PetResource {
 
 	}
 
+	// update PetName
+	@APIResponses(value = {
+			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+	@GET
+	@Path("changePetName/{id}/{petName}")
+	public Response changePetName(@PathParam("id") int id, @PathParam("petName") String petName){
+		Optional<Pet> pet = petRepo.findById(id);
+		if(pet.isEmpty()){
+			System.out.println("Not Found");
+			return Response.status(404).entity("Not found").build();
+		} else{
+			pet.get().setPetName(petName);
+			Pet pet1 = petRepo.save(pet.get());
+			return Response.ok(pet1).build();
+		}
+
+	}
+
 
 	// Delete Pet by petType
 	@APIResponses(value = {
@@ -115,4 +131,50 @@ public class PetResource {
 		return Response.ok().build();
 
 	}
+
+
+	// find Pets by petType
+	@APIResponses(value = {
+			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+	@GET
+	@Path("findPetsByPetType/{petType}")
+	public Response findPetsByPetType(@PathParam("petType") String petType){
+
+		List<Pet> petList = petRepo.findPetsByPetType(petType);
+		return Response.ok(petList).build();
+
+	}
+
+
+	// add new pet
+	@APIResponses(value = {
+			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+	@POST
+	@Path("addNewPet")
+	public Response addNewPet(@RequestBody Pet pet){
+
+		Pet petRes = petRepo.save(pet);
+		return Response.ok(petRes).build();
+
+	}
+
+
+	// change petType
+	@APIResponses(value = {
+			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+	@GET
+	@Path("viewPet/{id}")
+	public Response viewPet(@PathParam("id") int id){
+		Optional<Pet> pet = petRepo.findById(id);
+		if(pet.isEmpty()){
+
+			return Response.status(404).entity("Not found").build();
+		} else{
+			Pet pet1 = petRepo.findById(id).get();
+			return Response.ok(pet1).build();
+		}
+
+	}
+
+
 }
