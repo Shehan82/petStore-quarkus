@@ -85,7 +85,7 @@ public class PetResource {
 	}
 
 
-	// Search Pet by name
+	// change petType
 	@APIResponses(value = {
 			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
@@ -100,6 +100,19 @@ public class PetResource {
 			Pet pet1 = petRepo.save(pet.get());
 			return Response.ok(pet1).build();
 		}
+
+	}
+
+
+	// Delete Pet by petType
+	@APIResponses(value = {
+			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+	@GET
+	@Path("deletePetByPetType/{petType}")
+	public Response deletePetByPetType(@PathParam("petType") String petType){
+
+		petRepo.deletePetsByPetType(petType);
+		return Response.ok().build();
 
 	}
 }

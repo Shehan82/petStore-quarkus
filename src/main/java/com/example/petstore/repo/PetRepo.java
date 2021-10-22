@@ -10,6 +10,7 @@ public interface PetRepo extends JpaRepository<Pet, Integer> {
 //    public List<Pet> findPetByName(@Param("pet_name") String pet_name);
 
     public List<Pet> findPetsByPetName(String petName);
+    public void deletePetsByPetType(String petType);
 
 
 
