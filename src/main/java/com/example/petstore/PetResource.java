@@ -177,4 +177,15 @@ public class PetResource {
 	}
 
 
+	// change petType
+	@APIResponses(value = {
+			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+	@GET
+	@Path("getAllPets")
+	public Response getAllPets(){
+		List<Pet> pets = petRepo.findAll();
+		return Response.ok(pets).build();
+	}
+
+
 }
