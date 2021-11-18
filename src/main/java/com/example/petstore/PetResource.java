@@ -74,7 +74,7 @@ public class PetResource {
 
 	// Search Pet by name
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "Search Pet by Name", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
 	@Path("search/{petName}")
 	public Response getPetByName(@PathParam("petName") String name){
@@ -85,7 +85,7 @@ public class PetResource {
 
 	// change petType
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "change petType", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
 	@Path("changePetType/{id}/{petType}")
 	public Response changePetType(@PathParam("id") int id, @PathParam("petType") String petType){
@@ -103,7 +103,7 @@ public class PetResource {
 
 	// update PetName
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "update PetName", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
 	@Path("changePetName/{id}/{petName}")
 	public Response changePetName(@PathParam("id") int id, @PathParam("petName") String petName){
@@ -122,7 +122,7 @@ public class PetResource {
 
 	// Delete Pet by petType
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "Delete Pet by petType", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
 	@Path("deletePetByPetType/{petType}")
 	public Response deletePetByPetType(@PathParam("petType") String petType){
@@ -135,7 +135,7 @@ public class PetResource {
 
 	// find Pets by petType
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "find Pets by petType", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
 	@Path("findPetsByPetType/{petType}")
 	public Response findPetsByPetType(@PathParam("petType") String petType){
@@ -148,7 +148,7 @@ public class PetResource {
 
 	// add new pet
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "Add new pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@POST
 	@Path("addNewPet")
 	public Response addNewPet(@RequestBody Pet pet){
@@ -161,7 +161,7 @@ public class PetResource {
 
 	// change petType
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "Change petType", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
 	@Path("viewPet/{id}")
 	public Response viewPet(@PathParam("id") int id){
@@ -177,9 +177,9 @@ public class PetResource {
 	}
 
 
-	// change petType
+	// get all pets
 	@APIResponses(value = {
-			@APIResponse(responseCode = "200", description = "Search Pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
+			@APIResponse(responseCode = "200", description = "get all pets", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
 	@GET
 	@Path("getAllPets")
 	public Response getAllPets(){
